@@ -6,11 +6,11 @@ class lumen_user extends Model{
 
     protected $table = 'lumen_user';
 
-    protected $fillable = array(
-        'id',
-        'name',
-        'email',
-        'password',
-        'api-key',
-    );
+    // protected $fillable = array(
+    //     'id',
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'api-key',
+    // );
 }

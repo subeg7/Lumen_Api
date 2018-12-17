@@ -20,7 +20,20 @@ class UserController extends Controller
 
     }
 
-    // public
+    public function register(Request $post){
+
+      if($post->email!=null && $post->password!=null ){
+        $user = new lumen_user();
+        $user->email=$post->email;
+        $user->password=md5($post->password);
+        $userApiKey =$this->GenerateApiKey();
+        $user->api_key =$userApiKey;
+        $user->save();
+        return "succesfully registered with api-key<br>".$userApiKey;
+      }else {
+        return "bad request";
+      }
+    }
 
 
     public function post(Request $post){
@@ -34,7 +47,7 @@ class UserController extends Controller
       }
 
       if($status){
-        return "you are succesfully logged in,token=".$this->ProvideApiToken();
+        return "you are succesfully logged in,token=";
 
       }
       else
@@ -43,7 +56,7 @@ class UserController extends Controller
 
     }
 
-    private function ProvideApiToken(){
+    private function GenerateApiKey(){
       $charid = strtoupper(md5(uniqid(rand(),true)));
       $hypen = chr(45); //'-'
       $uuid = chr(123)//'{'
