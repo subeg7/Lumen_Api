@@ -18,4 +18,11 @@ $router->get('/', function () use ($router) {
 
 $router->get('/user','UserController@index');
 $router->post('/user','UserController@post');
-$router->post('/register','UserController@register'); 
+$router->post('/register','UserController@register');
+
+$router->post(
+    'auth/login',
+    [
+       'uses' => 'AuthController@authenticate'
+    ]
+);
