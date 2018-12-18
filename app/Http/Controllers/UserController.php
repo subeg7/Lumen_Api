@@ -9,14 +9,16 @@ use App\User;
 class UserController extends Controller
 {
     public function index(){
-      echo "lumen users are:<br>";
-      $results = lumen_user::all();
-      $i=0;
-      foreach($results as $row){
-        echo $i."]. name=".$row->email."<br>";
-        $i++;
 
-      }
+      $user = User::inRandomOrder()->get()->first();
+      echo "This is ".$user->name.". Contact me at ".$user->email.". See you at, August".$user->id;
+      // // $quote = json_encode(file_get_contents("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1"));
+      // $quote =file_get_contents("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1");
+      // $quote[0]=" ";
+      // $quote[strlen($quote)-1]=" ";
+      // $data = json_encode($quote);
+      // // print_r($quote);
+      // return $data ;
 
     }
 

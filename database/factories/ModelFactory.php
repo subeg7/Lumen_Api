@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Hash;
-
+use App\User;
+use App\Sms;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     return [
       'name'     => $faker->name,
       'email'    => $faker->unique()->email,
@@ -32,4 +33,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
                       }
 
     ];
+});
+
+$factory->define(Sms::class,function(){
+  $user = User::inRandomOrder()->get()->first();
+  // $quote = json_encode(file_get_contents("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1"))->content;
+  // echo $quote;
+   return[
+     'message'=>"This is ".$user->name.". Contact me at ".$user->email.". See you at, August".$user->id,
+     'user_id'=>$user->id
+  //
+  ];
+
 });

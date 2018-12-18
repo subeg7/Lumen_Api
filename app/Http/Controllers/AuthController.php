@@ -55,7 +55,8 @@ class AuthController extends BaseController
             'api_key'  => 'required'
         ]);
         // Find the user by email
-        $user = User::where('email', $this->request->input('email'))->first();
+        $user = test::where('id' ,'>' ,0)->pluck('id')->toArray();
+
         if (!$user) {
             // You wil probably have some sort of helpers or whatever
             // to make sure that you have the same response format for
