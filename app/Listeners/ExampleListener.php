@@ -18,6 +18,7 @@ class ExampleListener
         //
     }
 
+    //add the listener to the public channel
     /**
      * Handle the event.
      *
